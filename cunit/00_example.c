@@ -88,7 +88,7 @@ void testFREAD(void)
    if (NULL != temp_file) {
       rewind(temp_file);
       CU_ASSERT(9 == fread(buffer, sizeof(unsigned char), 20, temp_file));
-      CU_ASSERT(1 == strncmp(buffer, "Q\ni1 = 10", 9));
+      CU_ASSERT(0 == strncmp(buffer, "Q\ni1 = 10", 9));
    }
 }
 
