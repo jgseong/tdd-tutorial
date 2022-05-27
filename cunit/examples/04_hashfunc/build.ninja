@@ -1,0 +1,31 @@
+# build.ninja
+
+cc     = gcc
+cflags = -Wall
+libdir = -L../../
+libs   = -lcunit
+
+rule compile
+  command = $cc $cflags -c $in -o $out
+
+rule link
+  command = $cc $in -o $out
+
+rule link-test
+  command = $cc $in -o $out $libdir $libs
+
+rule do-test
+  command = ./$in
+
+build hash_functions.o: compile hash_functions.c
+build hash_functions.test.o: compile hash_functions.test.c
+build jenkins_one_at_a_time.o: compile jenkins_one_at_a_time.c
+build jenkins_one_at_a_time.test.o: compile jenkins_one_at_a_time.test.c
+
+build app: link hash_functions.o jenkins_one_at_a_time.o
+build ctest: link-test hash_functions.test.o  jenkins_one_at_a_time.o  jenkins_one_at_a_time.test.o
+
+build test: do-test ctest
+build unit-test: phony test
+
+default app
