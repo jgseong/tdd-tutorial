@@ -127,8 +127,8 @@ The array must end with an element holding NULL values,
 Suite information is then defined in one or more arrays of CU_SuiteInfo instances (defined in <CUnit/TestDB.h>):
 ```c
 CU_SuiteInfo suites[] = {
-  { "suitename1", suite1_init-func, suite1_cleanup_func, suite1_setup_func, suite1_teardrop_func, test_array1 },
-  { "suitename2", suite2_init-func, suite2_cleanup_func, suite2_setup_func, suite2_teardrop_func, test_array2 },
+  { "suitename1", suite1_init-func, suite1_cleanup_func, suite1_setup_func, suite1_teardown_func, test_array1 },
+  { "suitename2", suite2_init-func, suite2_cleanup_func, suite2_setup_func, suite2_teardown_func, test_array2 },
   CU_SUITE_INFO_NULL,
 };
 ```
