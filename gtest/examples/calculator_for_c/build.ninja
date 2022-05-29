@@ -1,0 +1,29 @@
+# build.ninja
+
+cc       = gcc
+cflags   = -Wall
+cpp      = g++
+cppflags = -Wall
+libdir   =
+libs     = -lgtest -lpthread
+
+rule c-compile
+  command = $cc $cflags -c $in -o $out
+
+rule cpp-compile
+  command = $cpp $cppflags -c $in -o $out
+
+rule link-test
+  command = $cpp $in -o $out $libdir $libs
+
+rule do-test
+  command = ./$in
+
+build calculator.o: c-compile calculator.c
+build test.o: cpp-compile test.cpp
+build utest: link-test calculator.o test.o
+
+build test: do-test utest
+build unit-test: phony test
+
+default unit-test
