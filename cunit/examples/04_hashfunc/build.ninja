@@ -2,7 +2,7 @@
 
 cc     = gcc
 cflags = -Wall
-libdir = -L../../
+libdir =
 libs   = -lcunit
 
 rule compile
